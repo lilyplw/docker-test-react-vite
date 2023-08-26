@@ -1,0 +1,13 @@
+version: "3.8" # docker-composeのバージョンを指定
+services: # このdocker-composeで管理するサービス（コンテナ）を定義
+  app: # サービス（コンテナ）の名前
+    build: # ビルドに関する設定
+      context: . # Dockerfileが存在するディレクトリへのパス
+      dockerfile: Dockerfile # Dockerfileの名前
+    volumes: # ボリュームをマウント（ホストとコンテナ間でのファイル同期）
+      - ./app:/app # ホストの./appディレクトリをコンテナの/appディレクトリにマウント
+    working_dir: /app # コンテナ内の作業ディレクトリを指定
+    command: npm run dev # コンテナが起動した際に実行するコマンド
+    tty: true # tty（端末エミュレータ）を有効にする
+    ports: # ポートのマッピング
+      - 5173:5173 # ホストの3000番ポートをコンテナの3000番ポートにマッピング
