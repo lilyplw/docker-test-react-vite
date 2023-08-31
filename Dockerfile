@@ -4,6 +4,10 @@ FROM node:18.17.1-alpine
 # ホストの ./app ディレクトリを、コンテナ内の /app ディレクトリにコピーする
 COPY ./app /app
 
+# コンテナ内の/app/node_modules ディレクトリ（もし存在する場合）を削除します。
+# これは、ホストとコンテナで異なるプラットフォーム用にインストールされたモジュールを避けるためです。
+RUN rm -rf /app/node_modules
+
 # コンテナ内での作業ディレクトリを /app に設定
 WORKDIR /app
 
