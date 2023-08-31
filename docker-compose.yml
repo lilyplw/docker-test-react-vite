@@ -6,6 +6,7 @@ services: # このdocker-composeで管理するサービス（コンテナ）を
       dockerfile: Dockerfile # Dockerfileの名前
     volumes: # ボリュームをマウント（ホストとコンテナ間でのファイル同期）
       - ./app:/app # ホストの./appディレクトリをコンテナの/appディレクトリにマウント
+      - /app/node_modules
     working_dir: /app # コンテナ内の作業ディレクトリを指定
     command: npm run dev # コンテナが起動した際に実行するコマンド
     tty: true # tty（端末エミュレータ）を有効にする
